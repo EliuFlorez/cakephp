@@ -65,13 +65,13 @@ class CakeTime {
  * @see CakeTime::timeAgoInWords()
  */
 	public static $wordAccuracy = array(
-		'year' => "day",
-		'month' => "day",
-		'week' => "day",
-		'day' => "hour",
-		'hour' => "minute",
-		'minute' => "minute",
-		'second' => "second",
+		'year' => 'day',
+		'month' => 'day',
+		'week' => 'day',
+		'day' => 'hour',
+		'hour' => 'minute',
+		'minute' => 'minute',
+		'second' => 'second',
 	);
 
 /**
