@@ -117,10 +117,11 @@ class TreeBehavior extends Behavior {
  * @throws \InvalidArgumentException When the 'for' key is not passed in $options
  */
 	public function findChildren($query, $options) {
-		extract($this->config());
-		extract($options);
+		$config = $this->config();
+		$options += ['for' => null, 'direct' => false];
+		list($parent, $left, $right) = [$config['parent'], $config['left'], $config['right']];
+		list($for, $direct) = [$options['for'], $options['direct']];
 		$primaryKey = $this->_table->primaryKey();
-		$direct = !isset($direct) ? false : $direct;
 
 		if (empty($for)) {
 			throw new \InvalidArgumentException("The 'for' key is required for find('children')");
@@ -161,7 +162,8 @@ class TreeBehavior extends Behavior {
  * @return boolean true on success, false on failure
  */
 	public function moveUp($id, $number = 1) {
-		extract($this->config());
+		$config = $this->config();
+		list($parent, $left, $right) = [$config['parent'], $config['left'], $config['right']];
 		$primaryKey = $this->_table->primaryKey();
 
 		if (!$number) {
@@ -221,7 +223,8 @@ class TreeBehavior extends Behavior {
  * @return boolean true on success, false on failure
  */
 	public function moveDown($id, $number = 1) {
-		extract($this->config());
+		$config = $this->config();
+		list($parent, $left, $right) = [$config['parent'], $config['left'], $config['right']];
 		$primaryKey = $this->_table->primaryKey();
 
 		if (!$number) {
